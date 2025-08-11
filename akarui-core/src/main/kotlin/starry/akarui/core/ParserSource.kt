@@ -8,8 +8,11 @@ interface ParserSource<T> : Iterable<T>, Iterator<T> {
     operator fun get(index: Long): T
 
     fun peek(offset: Long = 0): T = get(position + offset)
-    fun skip(count: Long) { position += count }
-    override fun next() = get(position ++)
+    fun skip(count: Long) {
+        position += count
+    }
+
+    override fun next() = get(position++)
     override fun hasNext() = position < size
     override fun iterator() = slice(0, size)
 

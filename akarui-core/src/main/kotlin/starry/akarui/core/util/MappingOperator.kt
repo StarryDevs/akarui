@@ -21,5 +21,5 @@ fun <S, R, T> Parser<S, Iterable<R>>.mapEach(mapping: context(ParserState<S>) (R
 
 fun <S, R, T> Parser<S, Iterable<R>>.mapEachIndexed(mapping: context(ParserState<S>) (R, index: Int) -> T) =
     map { iterable ->
-        iterable.mapIndexed { index, element ->  mapping(element, index) }
+        iterable.mapIndexed { index, element -> mapping(element, index) }
     }

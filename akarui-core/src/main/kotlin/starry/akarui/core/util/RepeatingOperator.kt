@@ -3,7 +3,8 @@ package starry.akarui.core.util
 import starry.akarui.core.Parser
 import starry.akarui.core.ParserState
 
-class RepeatingOperator<S, R>(val element: Parser<S, R>, val min: Int = 0, val max: Int = Int.MAX_VALUE) : Parser<S, List<R>> {
+class RepeatingOperator<S, R>(val element: Parser<S, R>, val min: Int = 0, val max: Int = Int.MAX_VALUE) :
+    Parser<S, List<R>> {
 
     context(state: ParserState<S>)
     override fun parse(): List<R> {

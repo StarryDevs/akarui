@@ -14,6 +14,7 @@ class ListOperator<S, E>(
 
     inner class Part : Parser<S, E> {
         override val parserName: String = "${this@ListOperator.parserName}.Part"
+
         context(state: ParserState<S>)
         override fun parse(): E {
             if (whitespace != null) +whitespace

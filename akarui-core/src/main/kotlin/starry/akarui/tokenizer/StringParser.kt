@@ -23,6 +23,7 @@ enum class StringParser(val quote: Char, symbol: String) : CharParser<String> {
                         // 结束
                         break
                     }
+
                     '\\' -> {
                         if (!buffer.hasNext()) throw makeError("Unterminated escape")
                         val esc = buffer.next()
@@ -43,6 +44,7 @@ enum class StringParser(val quote: Char, symbol: String) : CharParser<String> {
                                     }
                                     hex.concatToString().toInt(16).toChar()
                                 }
+
                                 'u' -> {
                                     val hex = CharArray(4) {
                                         if (!buffer.hasNext()) throw makeError("Invalid \\u escape")
@@ -50,10 +52,12 @@ enum class StringParser(val quote: Char, symbol: String) : CharParser<String> {
                                     }
                                     hex.concatToString().toInt(16).toChar()
                                 }
+
                                 else -> throw makeError("Invalid escape: \\$esc")
                             }
                         )
                     }
+
                     '\n', '\r' -> throw makeError("Single-quoted string cannot contain line breaks")
                     else -> append(c)
                 }
