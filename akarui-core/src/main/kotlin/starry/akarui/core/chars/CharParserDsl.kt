@@ -17,3 +17,10 @@ fun character(predicate: (Char) -> Boolean) = CharParser.sequence("Character") {
         throw makeError("Invalid character '$current'")
     current
 }
+
+val whitespace = CharParser.sequence("Whitespace") {
+    buildString {
+        while (source.hasNext() && source.peek().isWhitespace())
+            append(source.next())
+    }
+}
