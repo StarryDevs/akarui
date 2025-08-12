@@ -1,10 +1,13 @@
 [versions]
 kotlin = "2.2.0"
+arrow = "2.1.0"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 
 [bundles]
+arrow = ["arrow-core"]
 
 [plugins]
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

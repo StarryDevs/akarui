@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(libs.bundles.arrow)
+
     testImplementation(kotlin("test"))
 }
 
