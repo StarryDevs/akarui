@@ -14,14 +14,14 @@ interface ParserSource<T> : Iterable<T>, Iterator<T> {
 
     override fun next() = get(position++)
     override fun hasNext() = position < size
-    override fun iterator() = slice(position, size)
+    override fun iterator() = slice()
 
     fun slice() = slice(position, size)
 
     fun slice(start: Long, end: Long) = object : ParserSource<T> {
-        override var position: Long = start
+        override var position: Long = 0
         override val size: Long = end - start
-        override fun get(index: Long): T = this@ParserSource[index]
+        override fun get(index: Long): T = this@ParserSource[start + index]
     }
 
 }
