@@ -12,6 +12,6 @@ open class ParserException(
 ) :
     Exception(message, cause) {
 
-    override val message: String = "An error occurred while parsing ${parser.parserName}"
+    override val message: String = "An error occurred while parsing ${parser.parserName}: $message"
 
 }

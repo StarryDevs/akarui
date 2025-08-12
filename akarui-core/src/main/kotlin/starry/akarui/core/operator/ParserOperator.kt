@@ -1,11 +1,8 @@
-package starry.akarui.core.util
+package starry.akarui.core.operator
 
 import starry.akarui.core.Parser
 import starry.akarui.core.ParserSource
 import starry.akarui.core.ParserState
-import starry.akarui.core.exception.ParserException
-import starry.akarui.core.exception.SyntaxError
-
 
 context(_: ParserState<S>)
 fun <S, R> include(other: Parser<S, R>): R =
@@ -36,14 +33,6 @@ fun <S> Parser<S, *>.test(): Boolean {
     }
 }
 
-fun <S, R> ParserSource<S>.parse(parser: Parser<S, R>) = with(ParserState(this)) {
+fun <S, R> ParserSource<S>.parse(parser: Parser<S, R>) = context(ParserState(this)) {
     parser.parse()
 }
-
-context(_: ParserState<S>)
-fun <S, R> Parser<S, R>.makeError(message: String?, cause: Throwable? = null) =
-    ParserException(message, state, state.mark(), this, cause)
-
-context(_: ParserState<S>)
-fun <S, R> Parser<S, R>.makeSyntaxError(message: String?, cause: Throwable? = null) =
-    SyntaxError(message, state, state.mark(), this, cause)

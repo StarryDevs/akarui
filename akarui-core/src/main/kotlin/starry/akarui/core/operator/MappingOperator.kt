@@ -1,4 +1,4 @@
-package starry.akarui.core.util
+package starry.akarui.core.operator
 
 import starry.akarui.core.Parser
 import starry.akarui.core.ParserState
