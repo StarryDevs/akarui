@@ -10,5 +10,6 @@ plugins {
 }
 
 include(":akarui-core")
+include(":akarui-tokenizer")
 
 rootProject.name = "akarui"

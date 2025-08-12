@@ -1,4 +1,4 @@
-package starry.akarui.core.tokens
+package starry.akarui.tokenizer
 
 interface Token {
     val raw: String
