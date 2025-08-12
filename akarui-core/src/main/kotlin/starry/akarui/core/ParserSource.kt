@@ -14,7 +14,7 @@ interface ParserSource<T> : Iterable<T>, Iterator<T> {
 
     override fun next() = get(position++)
     override fun hasNext() = position < size
-    override fun iterator() = slice(0, size)
+    override fun iterator() = slice(position, size)
 
     fun slice() = slice(position, size)
 

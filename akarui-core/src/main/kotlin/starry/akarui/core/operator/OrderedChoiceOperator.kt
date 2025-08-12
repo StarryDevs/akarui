@@ -4,7 +4,7 @@ import starry.akarui.core.Parser
 import starry.akarui.core.ParserState
 import starry.akarui.core.exception.SyntaxError
 
-class OrderedChoiceParser<S, R>(val choices: List<Parser<S, out R>>) : Parser<S, R> {
+class OrderedChoiceOperator<S, R>(val choices: List<Parser<S, out R>>) : Parser<S, R> {
 
     context(state: ParserState<S>)
     override fun parse(): R {
@@ -23,10 +23,10 @@ class OrderedChoiceParser<S, R>(val choices: List<Parser<S, out R>>) : Parser<S,
 
 }
 
-fun <S, R> choose(vararg choices: Parser<S, out R>) = OrderedChoiceParser(choices.toList())
+fun <S, R> choose(vararg choices: Parser<S, out R>) = OrderedChoiceOperator(choices.toList())
 
 infix fun <S, T> Parser<S, out T>.or(other: Parser<S, out T>) = when {
-    this is OrderedChoiceParser<S, T> -> OrderedChoiceParser(this.choices + other)
-    other is OrderedChoiceParser<S, T> -> OrderedChoiceParser(listOf(this) + other.choices)
+    this is OrderedChoiceOperator<S, T> -> OrderedChoiceOperator(this.choices + other)
+    other is OrderedChoiceOperator<S, T> -> OrderedChoiceOperator(listOf(this) + other.choices)
     else -> choose(this, other)
 }
