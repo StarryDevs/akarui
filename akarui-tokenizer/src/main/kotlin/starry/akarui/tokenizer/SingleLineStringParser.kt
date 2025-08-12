@@ -11,7 +11,8 @@ import starry.akarui.tokenizer.tokens.StringToken
 
 enum class SingleLineStringParser(val quote: Char, val symbol: String) : CharParser<StringToken> {
     SINGLE_QUOTE('\'', "\"'\""),
-    DOUBLE_QUOTE('"', "'\"'");
+    DOUBLE_QUOTE('"', "'\"'"),
+    BACKTICK('`', "'`'");
 
     context(state: ParserState<Char>)
     override fun parse(): StringToken {
